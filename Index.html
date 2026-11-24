@@ -1,0 +1,203 @@
+
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Moz Sensi | Free Fire</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #0b0b14;
+      color: white;
+    }
+    header {
+      background: #151525;
+      padding: 20px;
+      text-align: center;
+      border-bottom: 2px solid #00f0a0;
+    }
+    header h1 { color: #00f0a0; margin: 0; }
+    header p { color: #bbb; }
+    nav {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      padding: 15px;
+      background: #10101d;
+    }
+    a { color: #00f0a0; text-decoration: none; }
+    .hero {
+      text-align: center;
+      padding: 35px 15px;
+      background: linear-gradient(135deg,#161631,#073d35);
+    }
+    .hero h2 { font-size: 28px; }
+    .container { padding: 20px; max-width: 900px; margin: auto; }
+    .products {
+      display: grid;
+      grid-template-columns: repeat(auto-fit,minmax(145px,1fr));
+      gap: 15px;
+    }
+    .card {
+      background: #191929;
+      padding: 18px;
+      border-radius: 12px;
+      text-align: center;
+      border: 1px solid #303044;
+    }
+    .phone { font-size: 40px; }
+    .price { color: #00f0a0; font-weight: bold; }
+    button {
+      background: #00f0a0;
+      color: #07120e;
+      padding: 12px;
+      border: none;
+      border-radius: 7px;
+      font-weight: bold;
+      width: 100%;
+      cursor: pointer;
+    }
+    input, select {
+      width: 100%;
+      padding: 13px;
+      margin: 8px 0;
+      border-radius: 7px;
+      border: 1px solid #444;
+      background: #191929;
+      color: white;
+    }
+    footer {
+      text-align: center;
+      padding: 25px;
+      color: #aaa;
+      background: #151525;
+      margin-top: 30px;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>🎯 MOZ SENSI</h1>
+  <p>A tua sensibilidade. A tua vitória!</p>
+</header>
+
+<nav>
+  <a href="#produtos">Produtos</a>
+  <a href="#pedido">Fazer pedido</a>
+</nav>
+
+<section class="hero">
+  <h2>🔥 DOMINA NO FREE FIRE</h2>
+  <p>Encontra sensibilidades para o teu telefone.</p>
+  <a href="#produtos"><button>VER SENSIBILIDADES</button></a>
+</section>
+
+<section class="container" id="produtos">
+  <h2>📱 Nossas sensibilidades</h2>
+  <div class="products">
+
+    <div class="card">
+      <div class="phone">📱</div>
+      <h3>Samsung</h3>
+      <p>Sensi para Samsung</p>
+      <p class="price">50 MT</p>
+      <button onclick="pedir('Samsung')">Comprar</button>
+    </div>
+
+    <div class="card">
+      <div class="phone">📱</div>
+      <h3>Redmi / Xiaomi</h3>
+      <p>Sensi para Redmi</p>
+      <p class="price">50 MT</p>
+      <button onclick="pedir('Redmi / Xiaomi')">Comprar</button>
+    </div>
+
+    <div class="card">
+      <div class="phone">📱</div>
+      <h3>iPhone</h3>
+      <p>Sensi para iPhone</p>
+      <p class="price">50 MT</p>
+      <button onclick="pedir('iPhone')">Comprar</button>
+    </div>
+
+    <div class="card">
+      <div class="phone">🎮</div>
+      <h3>Outra marca</h3>
+      <p>Configuração personalizada</p>
+      <p class="price">50 MT</p>
+      <button onclick="pedir('Outra marca')">Comprar</button>
+    </div>
+
+  </div>
+</section>
+
+<section class="container" id="pedido">
+  <h2>🛒 Fazer pedido</h2>
+  <p>Preenche os dados para enviar o pedido pelo WhatsApp.</p>
+
+  <form onsubmit="enviarPedido(event)">
+    <label>Teu nome</label>
+    <input id="nome" required placeholder="Escreve o teu nome">
+
+    <label>Marca e modelo do telefone</label>
+    <input id="modelo" required placeholder="Ex.: Redmi 13C">
+
+    <label>Sensibilidade desejada</label>
+    <select id="sensi">
+      <option>Samsung</option>
+      <option>Redmi / Xiaomi</option>
+      <option>iPhone</option>
+      <option>Outra marca</option>
+    </select>
+
+    <button type="submit">ENVIAR PEDIDO</button>
+  </form>
+  <p id="resultado"></p>
+</section>
+
+<footer>
+  <p>© 2026 Moz Sensi</p>
+  <p>Loja independente de configurações para Free Fire.</p>
+</footer>
+
+<script>
+  function pedir(marca) {
+    document.getElementById('sensi').value = marca;
+    document.getElementById('pedido').scrollIntoView({
+      behavior: 'smooth'
+    });
+  }
+
+  function enviarPedido(event) {
+    event.preventDefault();
+
+    const nome = document.getElementById('nome').value;
+    const modelo = document.getElementById('modelo').value;
+    const sensi = document.getElementById('sensi').value;
+
+    const mensagem =
+      'Olá! Quero comprar na Moz Sensi.%0A' +
+      'Nome: ' + encodeURIComponent(nome) + '%0A' +
+      'Telefone: ' + encodeURIComponent(modelo) + '%0A' +
+      'Produto: ' + encodeURIComponent(sensi);
+
+    document.getElementById('resultado').innerHTML =
+      'Pedido preparado! Configura o WhatsApp do vendedor para receber pedidos.';
+
+    // Substitui 258XXXXXXXXX pelo número do vendedor,
+    // incluindo o indicativo do país, sem o sinal +.
+    const numero = '258XXXXXXXXX';
+
+    if (/^258\d{9}$/.test(numero)) {
+      window.open('https://wa.me/' + numero + '?text=' + mensagem, '_blank');
+    }
+  }
+</script>
+
+</body>
+</html>
+  
